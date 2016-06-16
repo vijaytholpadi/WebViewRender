@@ -50,17 +50,17 @@
                                     <action selector="renderButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="n1R-b2-B6m"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Enter your hostname here" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KYD-V8-3vb">
-                                <rect key="frame" x="20" y="115" width="280" height="40"/>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qW-4H-iOW">
+                                <rect key="frame" x="136" y="188" width="51" height="31"/>
+                            </switch>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://staging.mobmerry.com/gcategories/12.969659/77.641189" borderStyle="line" placeholder="Enter your hostname here" textAlignment="center" minimumFontSize="17" clearButtonMode="unlessEditing" translatesAutoresizingMaskIntoConstraints="NO" id="KYD-V8-3vb">
+                                <rect key="frame" x="-77" y="115" width="474" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="sU1-Oi-0DN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert"/>
                             </textField>
-                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qW-4H-iOW">
-                                <rect key="frame" x="136" y="188" width="51" height="31"/>
-                            </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
