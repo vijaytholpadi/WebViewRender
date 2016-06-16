@@ -6,5 +6,5 @@ target 'WebWrapper' do
   use_frameworks!
 
   # Pods for WebWrapper
-
+pod 'CRToast', '~> 0.0.7'
 end

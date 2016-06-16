@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7003F4B8F7CE0E3CD71E82E3 /* Pods_WebWrapper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85988720FC7B784A94663F81 /* Pods_WebWrapper.framework */; };
 		CDC89F9C1CDC6D5900A1BDCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC89F9B1CDC6D5900A1BDCC /* AppDelegate.swift */; };
 		CDC89F9E1CDC6D5900A1BDCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDC89F9D1CDC6D5900A1BDCC /* ViewController.swift */; };
 		CDC89FA11CDC6D5900A1BDCC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CDC89F9F1CDC6D5900A1BDCC /* Main.storyboard */; };
@@ -17,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E0BA532EFCD34E7A65DC8AE /* Pods-WebWrapper.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebWrapper.release.xcconfig"; path = "Pods/Target Support Files/Pods-WebWrapper/Pods-WebWrapper.release.xcconfig"; sourceTree = "<group>"; };
+		85988720FC7B784A94663F81 /* Pods_WebWrapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WebWrapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A20D835F9E7B4147C200D94 /* Pods-WebWrapper.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WebWrapper.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WebWrapper/Pods-WebWrapper.debug.xcconfig"; sourceTree = "<group>"; };
 		CDC89F981CDC6D5900A1BDCC /* WebWrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebWrapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDC89F9B1CDC6D5900A1BDCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CDC89F9D1CDC6D5900A1BDCC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -33,17 +37,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7003F4B8F7CE0E3CD71E82E3 /* Pods_WebWrapper.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D44E96017E8F679A3511A1A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				85988720FC7B784A94663F81 /* Pods_WebWrapper.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7DED04A900375FD9784896C2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A20D835F9E7B4147C200D94 /* Pods-WebWrapper.debug.xcconfig */,
+				2E0BA532EFCD34E7A65DC8AE /* Pods-WebWrapper.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		CDC89F8F1CDC6D5900A1BDCC = {
 			isa = PBXGroup;
 			children = (
 				CDC89F9A1CDC6D5900A1BDCC /* WebWrapper */,
 				CDC89F991CDC6D5900A1BDCC /* Products */,
+				7DED04A900375FD9784896C2 /* Pods */,
+				3D44E96017E8F679A3511A1A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -77,9 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDC89FAA1CDC6D5900A1BDCC /* Build configuration list for PBXNativeTarget "WebWrapper" */;
 			buildPhases = (
+				5F409969617BE3F46D0CEFFC /* 📦 Check Pods Manifest.lock */,
 				CDC89F941CDC6D5900A1BDCC /* Sources */,
 				CDC89F951CDC6D5900A1BDCC /* Frameworks */,
 				CDC89F961CDC6D5900A1BDCC /* Resources */,
+				13E35F1F5A3BDF5EBF7AAFCA /* 📦 Embed Pods Frameworks */,
+				F22BE5C409E9AD1ED2E6BA7A /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -135,6 +162,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		13E35F1F5A3BDF5EBF7AAFCA /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WebWrapper/Pods-WebWrapper-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5F409969617BE3F46D0CEFFC /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F22BE5C409E9AD1ED2E6BA7A /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WebWrapper/Pods-WebWrapper-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CDC89F941CDC6D5900A1BDCC /* Sources */ = {
@@ -257,6 +332,7 @@
 		};
 		CDC89FAB1CDC6D5900A1BDCC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A20D835F9E7B4147C200D94 /* Pods-WebWrapper.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WebWrapper/Info.plist;
@@ -268,6 +344,7 @@
 		};
 		CDC89FAC1CDC6D5900A1BDCC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E0BA532EFCD34E7A65DC8AE /* Pods-WebWrapper.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = WebWrapper/Info.plist;
@@ -296,6 +373,7 @@
 				CDC89FAC1CDC6D5900A1BDCC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
