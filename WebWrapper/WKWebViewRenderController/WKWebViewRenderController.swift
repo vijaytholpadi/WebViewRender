@@ -100,10 +100,11 @@ class WKWebViewRenderController: UIViewController, WKNavigationDelegate {
     }
 
     func webView(webView: WKWebView, decidePolicyForNavigationResponse navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void) {
+        decisionHandler(.Allow)
         let endTime = NSDate()
         let requestStartTime = timeStampsRecord[(navigationResponse.response.URL?.absoluteString)!] as! NSDate
         let elapsedSeconds = endTime.timeIntervalSinceDate(requestStartTime)
         print((navigationResponse.response.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + "\n")
-        decisionHandler(.Allow)
+        AppDelegate.showToastWithText((navigationResponse.response.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + " secs")
     }
 }

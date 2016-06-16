@@ -17,6 +17,7 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
     override func viewDidLoad() {
 //        NSURLCache.sharedURLCache().removeAllCachedResponses()
         timeStampsRecord = Dictionary()
+        setupNavigationBarButtons()
         webView.delegate = self
         let urlReqest = NSURLRequest.init(URL: NSURL.init(string: urlToLoad as String)!);
         webView.loadRequest(urlReqest)
@@ -29,6 +30,19 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+
+    func setupNavigationBarButtons() {
+        let backbutton = UIBarButtonItem.init(title: "Back", style: .Plain, target: self, action: #selector(WKWebViewRenderController.backButtonPressed));
+        self.navigationItem.leftBarButtonItem = backbutton;
+    }
+
+    func backButtonPressed() {
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            navigationController?.popViewControllerAnimated(true)
+        }
     }
 
     //Pragma mark - UIWebViewDelegate methods
@@ -45,8 +59,12 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
 
     internal func webViewDidFinishLoad(webView: UIWebView) {
         let endTime = NSDate()
-        let requestStartTime = timeStampsRecord[(webView.request?.URL?.absoluteString)!] as! NSDate
-        let elapsedSeconds = endTime.timeIntervalSinceDate(requestStartTime)
-        print((webView.request?.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + "\n")
+        if (webView.stringByEvaluatingJavaScriptFromString("document.readyState") == "complete") {
+            if let urlString = (webView.request?.URL?.absoluteString) where urlString != "" {
+                let requestStartTime = timeStampsRecord[urlString] as! NSDate
+                let elapsedSeconds = endTime.timeIntervalSinceDate(requestStartTime)
+                AppDelegate.showToastWithText((webView.request?.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + " secs")
+            }
+        }
     }
 }

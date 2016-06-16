@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CRToast
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -42,5 +43,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
+    class func showToastWithText(toastText : String) {
+        let options : [String:AnyObject] = [kCRToastTextKey : toastText,
+                                            kCRToastNotificationTypeKey: 1,
+                                            kCRToastTextAlignmentKey : 1,
+                                            kCRToastBackgroundColorKey : UIColor.redColor(),
+                                            kCRToastNotificationPresentationTypeKey:0,
+                                            kCRToastAnimationInTypeKey :  0,
+                                            kCRToastAnimationOutTypeKey : 0,
+                                            kCRToastAnimationInDirectionKey : 0,
+                                            kCRToastAnimationOutDirectionKey : 0,
+                                            kCRToastTextMaxNumberOfLinesKey: 0]
+        CRToastManager.showNotificationWithOptions(options) {
+            
+        }
+    }
 }
-
