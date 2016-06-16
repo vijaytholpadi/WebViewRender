@@ -24,17 +24,17 @@ class WKWebViewRenderController: UIViewController, WKNavigationDelegate {
         let urlRequest = NSURLRequest.init(URL: NSURL.init(string: urlToLoad as String)!);
         webView.loadRequest(urlRequest)
     }
-    
+
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         view.addSubview(progressView)
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         progressView.removeFromSuperview()
     }
-    
+
     func setupWebView() {
         webView = WKWebView.init(frame: CGRectZero)
         webView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,18 +42,18 @@ class WKWebViewRenderController: UIViewController, WKNavigationDelegate {
         view.addSubview(webView)
         webView.navigationDelegate = self;
         webView.addObserver(self, forKeyPath: "estimatedProgress", options: .New, context: nil)
-        
+
         //Setting up the constraints
         let heightConstaint = NSLayoutConstraint.init(item: webView, attribute:.Height, relatedBy: .Equal, toItem: view, attribute: .Height, multiplier: 1.0, constant: 0.0)
         let widthConstaint = NSLayoutConstraint.init(item: webView, attribute:.Width, relatedBy: .Equal, toItem: view, attribute: .Width, multiplier: 1.0, constant: 0.0)
         view.addConstraints([heightConstaint,widthConstaint])
     }
-    
+
     func setupNavigationBarButtons() {
         let backbutton = UIBarButtonItem.init(title: "Back", style: .Plain, target: self, action: #selector(WKWebViewRenderController.backButtonPressed));
         self.navigationItem.leftBarButtonItem = backbutton;
     }
-    
+
     func backButtonPressed() {
         if webView.canGoBack {
             webView.goBack()
@@ -61,18 +61,18 @@ class WKWebViewRenderController: UIViewController, WKNavigationDelegate {
             navigationController?.popViewControllerAnimated(true)
         }
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     deinit {
         webView.navigationDelegate = nil
         webView.removeObserver(self, forKeyPath: "estimatedProgress")
     }
-    
-    
+
+
     //KVO callback
     override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
         if keyPath == "estimatedProgress" {
@@ -82,7 +82,7 @@ class WKWebViewRenderController: UIViewController, WKNavigationDelegate {
             super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
         }
     }
-    
+
     func addProgressView() {
         progressView = UIProgressView.init(progressViewStyle: .Default)
         progressView.trackTintColor = UIColor.init(white: 1.0, alpha: 0.0)
@@ -91,7 +91,7 @@ class WKWebViewRenderController: UIViewController, WKNavigationDelegate {
         progressView.autoresizingMask = [.FlexibleWidth, .FlexibleTopMargin]
     }
 
-//pragma mark - WKNavigationDelegate methods
+    //pragma mark - WKNavigationDelegate methods
     func webView(webView: WKWebView, decidePolicyForNavigationAction navigationAction: WKNavigationAction, decisionHandler: (WKNavigationActionPolicy) -> Void) {
         let startTime = NSDate()
         let urlString = navigationAction.request.URL?.absoluteString
@@ -101,10 +101,29 @@ class WKWebViewRenderController: UIViewController, WKNavigationDelegate {
 
     func webView(webView: WKWebView, decidePolicyForNavigationResponse navigationResponse: WKNavigationResponse, decisionHandler: (WKNavigationResponsePolicy) -> Void) {
         decisionHandler(.Allow)
+    }
+
+    internal func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+
+    }
+
+    internal func webView(webView: WKWebView, didReceiveServerRedirectForProvisionalNavigation navigation: WKNavigation!) {
+
+    }
+
+    internal func webView(webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: NSError) {
+
+    }
+
+    internal func webView(webView: WKWebView, didCommitNavigation navigation: WKNavigation!) {
+
+    }
+
+    internal func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
         let endTime = NSDate()
-        let requestStartTime = timeStampsRecord[(navigationResponse.response.URL?.absoluteString)!] as! NSDate
+        let requestStartTime = timeStampsRecord[(webView.URL?.absoluteString)!] as! NSDate
         let elapsedSeconds = endTime.timeIntervalSinceDate(requestStartTime)
-        print((navigationResponse.response.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + "\n")
-        AppDelegate.showToastWithText((navigationResponse.response.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + " secs")
+        print((webView.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + "\n")
+        AppDelegate.showToastWithText((webView.URL?.absoluteString)! + " rendered in " + "\(elapsedSeconds)" + " secs")
     }
 }
