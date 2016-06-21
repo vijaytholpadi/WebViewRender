@@ -7,4 +7,5 @@ target 'WebWrapper' do
 
   # Pods for WebWrapper
 pod 'CRToast'
+pod 'IQKeyboardManagerSwift'
 end
