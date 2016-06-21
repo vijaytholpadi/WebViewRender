@@ -10,11 +10,12 @@ import UIKit
 
 class ViewController: UIViewController {
     @IBOutlet weak var hostnameTextField: UITextField!
+    @IBOutlet weak var cookieStringTextView: UITextView!
     @IBOutlet weak var webViewTypeSwitch: UISwitch!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        setupTextView(cookieStringTextView)
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +23,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    func setupTextView(targetTextView: UITextView) {
+        targetTextView.layer.borderWidth = 1.0;
+        targetTextView.layer.borderColor = UIColor.blackColor().CGColor
+    }
 
     @IBAction func renderButtonPressed(sender: AnyObject) {
         switch webViewTypeSwitch.on {

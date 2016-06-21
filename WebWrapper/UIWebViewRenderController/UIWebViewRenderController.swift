@@ -12,6 +12,7 @@ import UIKit
 class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
     @IBOutlet weak var webView: UIWebView!
     var urlToLoad : String!
+    var cookieStringToLoad : String!
     var timeStampsRecord: [String : AnyObject]!
 
     override func viewDidLoad() {
@@ -19,8 +20,9 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
         timeStampsRecord = Dictionary()
         setupNavigationBarButtons()
         webView.delegate = self
-        let urlReqest = NSURLRequest.init(URL: NSURL.init(string: urlToLoad as String)!);
-        webView.loadRequest(urlReqest)
+        let urlRequest = NSURLRequest.init(URL: NSURL.init(string: urlToLoad as String)!);
+        setCookie(cookieStringToLoad, request: urlRequest)
+        webView.loadRequest(urlRequest)
     }
 
     deinit {
@@ -43,6 +45,12 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
         } else {
             navigationController?.popViewControllerAnimated(true)
         }
+    }
+
+    func setCookie(cookieString:String, request:NSURLRequest) {
+        let cookieProperties : [String:AnyObject] = [NSHTTPCookieName:"mmbn", NSHTTPCookiePath:(request.URL?.path)!, NSHTTPCookieDomain:(request.URL?.host)!, NSHTTPCookieValue:cookieString]
+        let httpcookie : NSHTTPCookie = NSHTTPCookie(properties:cookieProperties)!
+        NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(httpcookie)
     }
 
     //Pragma mark - UIWebViewDelegate methods
