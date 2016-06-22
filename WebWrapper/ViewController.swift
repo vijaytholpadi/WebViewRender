@@ -38,6 +38,7 @@ class ViewController: UIViewController {
         case false:
             let uiwebViewRenderController =  storyboard?.instantiateViewControllerWithIdentifier("UIWebViewRenderController") as! UIWebViewRenderController
             uiwebViewRenderController.urlToLoad = hostnameTextField.text
+            uiwebViewRenderController.cookieStringToLoad = cookieStringTextView.text;
             self.navigationController?.pushViewController(uiwebViewRenderController, animated: true);
             break
         }
