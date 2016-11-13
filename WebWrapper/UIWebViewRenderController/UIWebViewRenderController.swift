@@ -20,7 +20,7 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
         timeStampsRecord = Dictionary()
         setupNavigationBarButtons()
         webView.delegate = self
-        let urlRequest = NSURLRequest.init(URL: NSURL.init(string: urlToLoad as String)!);
+        let urlRequest = URLRequest.init(url: URL.init(string: urlToLoad as String)!);
         setCookie(cookieStringToLoad, request: urlRequest)
         webView.loadRequest(urlRequest)
     }
@@ -35,7 +35,7 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
     }
 
     func setupNavigationBarButtons() {
-        let backbutton = UIBarButtonItem.init(title: "Back", style: .Plain, target: self, action: #selector(WKWebViewRenderController.backButtonPressed));
+        let backbutton = UIBarButtonItem.init(title: "Back", style: .plain, target: self, action: #selector(WKWebViewRenderController.backButtonPressed));
         self.navigationItem.leftBarButtonItem = backbutton;
     }
 
@@ -43,35 +43,35 @@ class UIWebViewRenderController: UIViewController , UIWebViewDelegate {
         if webView.canGoBack {
             webView.goBack()
         } else {
-            navigationController?.popViewControllerAnimated(true)
+            _ = navigationController?.popViewController(animated: true);
         }
     }
 
-    func setCookie(cookieString:String, request:NSURLRequest) {
-        let cookieProperties : [String:AnyObject] = [NSHTTPCookieName:"mmbn", NSHTTPCookiePath:(request.URL?.path)!, NSHTTPCookieDomain:(request.URL?.host)!, NSHTTPCookieValue:cookieString]
-        let httpcookie : NSHTTPCookie = NSHTTPCookie(properties:cookieProperties)!
-        NSHTTPCookieStorage.sharedHTTPCookieStorage().setCookie(httpcookie)
+    func setCookie(_ cookieString:String, request:URLRequest) {
+        let cookieProperties : [HTTPCookiePropertyKey:AnyObject] = [HTTPCookiePropertyKey.name:"mmbn" as AnyObject, HTTPCookiePropertyKey.path:(request.url?.path)! as AnyObject, HTTPCookiePropertyKey.domain:(request.url?.host)! as AnyObject, HTTPCookiePropertyKey.value:cookieString as AnyObject]
+        let httpcookie : HTTPCookie = HTTPCookie(properties:cookieProperties as! [HTTPCookiePropertyKey : AnyObject])!
+        HTTPCookieStorage.shared.setCookie(httpcookie)
     }
 
     //Pragma mark - UIWebViewDelegate methods
-    internal func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        let startTime = NSDate()
-        let urlString = request.URL?.absoluteString
-        timeStampsRecord[urlString!] = startTime
+    internal func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        let startTime = Date()
+        let urlString = request.url?.absoluteString
+        timeStampsRecord[urlString!] = startTime as AnyObject?
         return true
     }
 
-    internal func webViewDidStartLoad(webView: UIWebView) {
+    internal func webViewDidStartLoad(_ webView: UIWebView) {
 
     }
 
-    internal func webViewDidFinishLoad(webView: UIWebView) {
-        let endTime = NSDate()
-        if (webView.stringByEvaluatingJavaScriptFromString("document.readyState") == "complete") {
-            if let urlString = (webView.request?.URL?.absoluteString) where urlString != "" {
-                let requestStartTime = timeStampsRecord[urlString] as! NSDate
-                let elapsedSeconds = endTime.timeIntervalSinceDate(requestStartTime)
-                AppDelegate.showToastWithText((webView.request?.URL?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + " secs")
+    internal func webViewDidFinishLoad(_ webView: UIWebView) {
+        let endTime = Date()
+        if (webView.stringByEvaluatingJavaScript(from: "document.readyState") == "complete") {
+            if let urlString = (webView.request?.url?.absoluteString), urlString != "" {
+                let requestStartTime = timeStampsRecord[urlString] as! Date
+                let elapsedSeconds = endTime.timeIntervalSince(requestStartTime)
+                AppDelegate.showToastWithText((webView.request?.url?.absoluteString)! + " loaded in " + "\(elapsedSeconds)" + " secs")
             }
         }
     }

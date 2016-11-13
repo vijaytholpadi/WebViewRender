@@ -1,6 +1,6 @@
 PODS:
   - CRToast (0.0.9)
-  - IQKeyboardManagerSwift (4.0.3)
+  - IQKeyboardManagerSwift (4.0.7)
 
 DEPENDENCIES:
   - CRToast
@@ -8,8 +8,8 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
-  IQKeyboardManagerSwift: b6883b720b0e76473692fdc80828442566e1075f
+  IQKeyboardManagerSwift: 58bbcf46b5cf9fd4ed625d28a60cb2fbae4ab0f4
 
 PODFILE CHECKSUM: c766adee4d3767b679b3420509f4089ee359d2f8
 
-COCOAPODS: 1.0.0
+COCOAPODS: 1.1.1

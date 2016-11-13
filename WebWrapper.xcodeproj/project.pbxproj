@@ -101,12 +101,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CDC89FAA1CDC6D5900A1BDCC /* Build configuration list for PBXNativeTarget "WebWrapper" */;
 			buildPhases = (
-				5F409969617BE3F46D0CEFFC /* 📦 Check Pods Manifest.lock */,
+				5F409969617BE3F46D0CEFFC /* [CP] Check Pods Manifest.lock */,
 				CDC89F941CDC6D5900A1BDCC /* Sources */,
 				CDC89F951CDC6D5900A1BDCC /* Frameworks */,
 				CDC89F961CDC6D5900A1BDCC /* Resources */,
-				13E35F1F5A3BDF5EBF7AAFCA /* 📦 Embed Pods Frameworks */,
-				F22BE5C409E9AD1ED2E6BA7A /* 📦 Copy Pods Resources */,
+				13E35F1F5A3BDF5EBF7AAFCA /* [CP] Embed Pods Frameworks */,
+				F22BE5C409E9AD1ED2E6BA7A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -129,6 +129,7 @@
 				TargetAttributes = {
 					CDC89F971CDC6D5900A1BDCC = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -164,14 +165,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		13E35F1F5A3BDF5EBF7AAFCA /* 📦 Embed Pods Frameworks */ = {
+		13E35F1F5A3BDF5EBF7AAFCA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -179,29 +180,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WebWrapper/Pods-WebWrapper-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F409969617BE3F46D0CEFFC /* 📦 Check Pods Manifest.lock */ = {
+		5F409969617BE3F46D0CEFFC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F22BE5C409E9AD1ED2E6BA7A /* 📦 Copy Pods Resources */ = {
+		F22BE5C409E9AD1ED2E6BA7A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -339,6 +340,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactionone.WebWrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -351,6 +353,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.interactionone.WebWrapper;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

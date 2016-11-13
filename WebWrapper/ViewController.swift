@@ -23,20 +23,20 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    func setupTextView(targetTextView: UITextView) {
+    func setupTextView(_ targetTextView: UITextView) {
         targetTextView.layer.borderWidth = 1.0;
-        targetTextView.layer.borderColor = UIColor.blackColor().CGColor
+        targetTextView.layer.borderColor = UIColor.black.cgColor
     }
 
-    @IBAction func renderButtonPressed(sender: AnyObject) {
-        switch webViewTypeSwitch.on {
+    @IBAction func renderButtonPressed(_ sender: AnyObject) {
+        switch webViewTypeSwitch.isOn {
         case true:
-            let wkwebViewRenderController =  storyboard?.instantiateViewControllerWithIdentifier("WKWebViewRenderController") as! WKWebViewRenderController
+            let wkwebViewRenderController =  storyboard?.instantiateViewController(withIdentifier: "WKWebViewRenderController") as! WKWebViewRenderController
             wkwebViewRenderController.urlToLoad = hostnameTextField.text
             self.navigationController?.pushViewController(wkwebViewRenderController, animated: true);
             break
         case false:
-            let uiwebViewRenderController =  storyboard?.instantiateViewControllerWithIdentifier("UIWebViewRenderController") as! UIWebViewRenderController
+            let uiwebViewRenderController =  storyboard?.instantiateViewController(withIdentifier: "UIWebViewRenderController") as! UIWebViewRenderController
             uiwebViewRenderController.urlToLoad = hostnameTextField.text
             uiwebViewRenderController.cookieStringToLoad = cookieStringTextView.text;
             self.navigationController?.pushViewController(uiwebViewRenderController, animated: true);
